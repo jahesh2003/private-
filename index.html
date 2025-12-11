@@ -13,7 +13,7 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f6ede1 url("download (4).jpg") center/cover no-repeat fixed;
+  background: #f6ede1 url("download (4).jpg") center/contain no-repeat fixed;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -291,9 +291,9 @@ audio {
 }
 
 @media (max-width: 393px) and (max-height: 852px) {
-  /* Specific for iPhone 15 (393x852 logical pixels, 2556x1179 physical) */
+  /* Specific for iPhone 15 (393x852 logical pixels, 1179x2556 physical portrait) */
   body { 
-    background-size: cover; /* Ensures full coverage for 19.5:9 aspect ratio */
+    background-size: contain; /* Fits the full 9:16 image without cropping/zooming, preserving aspect ratio with color fill for bars */
     font-size: 14px; 
   }
   .container { 
