@@ -198,13 +198,6 @@ video {
   border-radius: 14px;
 }
 
-audio {
-  width: 100%;
-  max-width: 420px;
-  margin: 14px auto;
-  display: block;
-}
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
@@ -221,26 +214,6 @@ audio {
 @keyframes float {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; }
-}
-
-.music-control {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.22);
-  z-index: 100;
-  display: none;
-}
-
-.music-control.active {
-  display: block;
 }
 
 @media (max-width: 900px) {
@@ -345,14 +318,6 @@ audio {
     border-radius: 14px;
   }
   video { border-radius: 10px; }
-  audio { max-width: 100%; margin: 12px auto; }
-  .music-control { 
-    top: 12px; 
-    right: 12px; 
-    width: 44px; 
-    height: 44px; 
-    font-size: 20px;
-  }
   .heart { font-size: 24px; }
 }
 
@@ -375,8 +340,6 @@ audio {
 
   <div id="particles-js"></div>
 
-  <button class="music-control" id="music-control">🔇</button>
-
   <div class="container">
 
     <div class="apology-message">
@@ -388,17 +351,17 @@ audio {
     </div>
 
     <div class="question-section" id="question-section">
-      <h2>please mujhe maaf kardo 🥺</h2>
+      <h2>क्या तुम मुझे माफ कर दोगी? 🥺</h2>
       <h3>Can I be your saheli?</h3>
 
       <div class="buttons-container">
-        <button class="btn" id="no-btn">Nahi </button>
-        <button class="btn" id="yes-btn">Haan </button>
+        <button class="btn" id="no-btn">Nahi ❌</button>
+        <button class="btn" id="yes-btn">Haan ✓</button>
       </div>
     </div>
 
     <div class="celebration" id="celebration">
-      <h2>Thank you 💕</h2>
+      <h2>Thank you for giving me another chance! 💕</h2>
       <p class="celebration-sub"></p>
 
       <div class="video-container">
@@ -407,11 +370,6 @@ audio {
           Your browser does not support the video tag.
         </video>
       </div>
-
-      <audio id="celebration-audio" loop>
-        <source src="apology_audio.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
     </div>
   </div>
 
@@ -424,8 +382,6 @@ const noBtn = document.getElementById("no-btn");
 const yesBtn = document.getElementById("yes-btn");
 const questionSection = document.getElementById("question-section");
 const celebration = document.getElementById("celebration");
-const celebrationAudio = document.getElementById("celebration-audio");
-const musicControl = document.getElementById("music-control");
 const confettiCanvas = document.getElementById("confetti-canvas");
 const apologyVideo = document.getElementById("apology-video");
 
@@ -510,18 +466,13 @@ if (window.innerWidth > 393) {
 let clickCount = 0;
 const messages = [
   "Nahi 🙈",
-  "Arey yaar, mat daba! 😂",
+  "Last chance, promise! 🙏",
   "Pakki baat? 😅",
   "Soch lo ek aur baar! 🤞",
   "Bilkul nahi? 😳",
   "Really? 😭",
   "Last chance, promise! 🙏",
   "Okay okay... maybe yes? 😉",
-  "Bas ek YES bol do! ",
-  "Really? 😭",
-  "Haan bolde plss",
-  "pleasseee 🙃",
-  "Really? 😭",
   "Please meri izzat rakh lo! 😅",
   "Dil pe patthar rakh ke YES! 🪨❤️",
 ];
@@ -748,25 +699,10 @@ const showCelebration = () => {
   celebration.classList.add("active");
   startConfetti();
   createHearts();
-  celebrationAudio.play().catch(() => {});
-  musicControl.classList.add("active");
-  musicControl.textContent = "🔊";
   apologyVideo.play().catch(() => {});
 };
 
 yesBtn.addEventListener("click", showCelebration);
-
-musicControl.addEventListener("click", () => {
-  if (celebrationAudio.paused) {
-    celebrationAudio.play().catch(() => {});
-    musicControl.textContent = "🔊";
-  } else {
-    celebrationAudio.pause();
-    musicControl.textContent = "🔇";
-  }
-});
   </script>
 </body>
 </html>
-
-
